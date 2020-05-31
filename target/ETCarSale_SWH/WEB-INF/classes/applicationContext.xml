@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <mvc:annotation-driven enable-matrix-variables="true"></mvc:annotation-driven>
+
+    <context:component-scan base-package="com.etoak.car"></context:component-scan>
+
+    <mvc:default-servlet-handler/>
+
+    <context:property-placeholder location="classpath*:db.properties"></context:property-placeholder>
+
+    <context:component-scan base-package="com.etoak.car"></context:component-scan>
+
+    <mvc:annotation-driven conversion-service="ETDateConvertorService"></mvc:annotation-driven>
+
+    <bean id="ETDateConvertorService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.etoak.car.commons.convertor.DateConvertor"></bean>
+            </set>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".html"></property>
+    </bean>
+
+    <bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="209715200000"></property>
+    </bean>
+
+    <bean id="ds" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="${o.url}"></property>
+        <property name="driverClassName" value="${o.driver}"></property>
+        <property name="username" value="${o.user}"></property>
+        <property name="password" value="${o.pwd}"></property>
+
+        <property name="maxActive" value="${o.maxActive}"></property>
+        <property name="maxWait" value="${o.maxWait}"></property>
+     </bean>
+
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds" ></property>
+        <property name="mapperLocations" value="classpath*:xml/*.xml"></property>
+        <property name="typeAliasesPackage" value="com.etoak.car"></property>
+
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+
+                        <value>
+                            helperDialect=oracle
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.etoak.car"></property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="ds"></property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+</beans>

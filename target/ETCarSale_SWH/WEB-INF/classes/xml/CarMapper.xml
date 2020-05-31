@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etoak.car.cars.mapper.CarMapper">
+    <insert id="addCar">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            SELECT sys_guid() AS id from dual
+        </selectKey>
+        INSERT INTO CAR (ID,BRAND, TRAIN, PRICE, UPLOADTIME, TYPE, GEARBOX, CAPACITY, COURSE, LOCATION, INFO)
+        VALUES (#{id},#{brand},#{train},#{price},#{uploadtime},#{type},#{gearbox},#{capacity},#{course},#{location},#{info})
+    </insert>
+    <insert id="addCarPic">
+        INSERT INTO CARPIC (SAVEPATH, SHOWNAME, CARID) VALUES (#{savepath},#{showname},#{carid})
+    </insert>
+    <resultMap id="rMap_car1" type="car">
+        <id property="id" column="cid" />
+        <result property="brand" column="BRAND" />
+        <result property="train" column="TRAIN"></result>
+        <result property="price" column="PRICE"></result>
+        <result property="uploadtime" column="UPLOADTIME"></result>
+        <result property="type" column="TYPE"></result>
+        <result property="gearbox" column="GEARBOX"></result>
+        <result property="capacity" column="CAPACITY"></result>
+        <result property="course" column="COURSE"></result>
+        <result property="location" column="LOCATION"></result>
+        <result property="info" column="INFO"></result>
+        <association property="carPic" javaType="carPic">
+            <id property="id" column="cpid"></id>
+            <result property="savepath" column="SAVEPATH" />
+            <result property="showname" column="SHOWNAME" />
+            <result property="carid" column="CARID" />
+        </association>
+    </resultMap>
+    <select id="querySomeCar" resultMap="rMap_car1">
+        select
+        c.id as cid,
+        c.BRAND,
+        c.TRAIN,
+        c.PRICE,
+        c.UPLOADTIME,
+        c.TYPE,
+        c.GEARBOX,
+        c.CAPACITY,
+        c.COURSE,
+        c.LOCATION,
+        c.INFO,
+        cp.id as cpid,
+        cp.SHOWNAME,
+        cp.SAVEPATH,
+        cp.CARID
+        from CAR c left join CARPIC cp on c.ID = cp.CARID
+        <where>
+            <if test="brand!=null and brand!=''">
+                and brand = #{brand}
+            </if>
+            <if test="train!=null and train!=''">
+                and train = #{train}
+            </if>
+            <if test="startprice!=null and startprice!=''">
+                and PRICE > #{startprice}
+            </if>
+            <if test="endprice!=null and endprice!=''">
+                and PRICE &lt; #{endprice}
+            </if>
+            <if test="starttime!=null and starttime!=''">
+                and UPLOADTIME &lt; #{starttime}
+            </if>
+            <if test="endtime!=null and endtime!=''">
+                and UPLOADTIME > #{endtime}
+            </if>
+            <if test="type!=null and type!=''">
+                and type = #{type}
+            </if>
+            <if test="gearbox!=null and gearbox!=''">
+                and gearbox = #{gearbox}
+            </if>
+            <if test="capacity!=null and capacity!=''">
+                and capacity = #{capacity}
+            </if>
+            <if test="location!=null and location!=''">
+                and location = #{location}
+            </if>
+        </where>
+        order by c.id
+    </select>
+    <select id="queryAllBrand" resultType="string">
+        SELECT brand from CAR
+    </select>
+    <select id="queryTrainWithBrand" resultType="string">
+        SELECT TRAIN from CAR WHERE BRAND = #{brand}
+    </select>
+    <select id="queryAllLocation" resultType="string">
+        select LOCATION FROM CAR
+    </select>
+    <select id="queryAllTrain" resultType="string">
+        SELECT TRAIN from CAR
+    </select>
+</mapper>

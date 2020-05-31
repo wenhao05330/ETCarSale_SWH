@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ETCarSale_SWH:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>ETCarSale_SWH</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="ETCarSale_SWH.war">
+      <element id="artifact" artifact-name="ETCarSale_SWH:war exploded" />
+    </root>
+  </artifact>
+</component>

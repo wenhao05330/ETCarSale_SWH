@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div id="q_container">
+    <div id="q_brand">
+        品牌:
+
+        <!--<input type="radio" name="brand">-->
+    </div>
+    <br>
+    车系:
+    <div id="q_train">
+
+    </div>
+    <br>
+    <div id="q_price">
+        价格:
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="3万以下">3万以下
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="3~5">3~5万
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="5-8">5-8万
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="8-10">8-10万
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="15-20">15-20万
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="20-30">20-30万
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="30-50">30-50万
+        <input type="radio" name="price" onclick="queryData(pn,ps)" value="50万以上">50万以上
+    </div>
+    <br>
+    <div id="q_age">
+        车龄:
+        <input type="radio" name="age" onclick="queryData(pn,ps)" value="1年以内">1年以内
+        <input type="radio" name="age" onclick="queryData(pn,ps)" value="1-3">1-3年
+        <input type="radio" name="age" onclick="queryData(pn,ps)" value="3-5">3-5年
+        <input type="radio" name="age" onclick="queryData(pn,ps)" value="5-8">5-8年
+        <input type="radio" name="age" onclick="queryData(pn,ps)" value="8-10">8-10年
+        <input type="radio" name="age" onclick="queryData(pn,ps)" value="10年以上">10年以上
+    </div>
+    <br>
+    <div id="q_type">
+        级别:
+        <select id="type" name="type" class="form-control" onchange="queryData(pn,ps)">
+            <option value="">===请选择===</option>
+            <option value="小型车">小型车</option>
+            <option value="中型车">中型车</option>
+            <option value="紧凑型">紧凑型</option>
+            <option value="中大型">中大型</option>
+            <option value="大型车">大型车</option>
+            <option value="mpv">mpv</option>
+            <option value="suv">suv</option>
+            <option value="跑车">跑车</option>
+        </select>
+    </div>
+    <br>
+    <div id="q_gearbox">
+        变速箱:
+        <select name="gearbox" id="gearbox" onchange="queryData(pn,ps)" class="form-control">
+            <option value="">===请选择===</option>
+            <option value="手动">手动</option>
+            <option value="自动">自动</option>
+        </select>
+    </div>
+    <br>
+    <div id="q_capacity">
+        排量:
+        <select id="capacity" name="capacity" onchange="queryData(pn,ps)" class="form-control">
+            <option value="">===请选择===</option>
+            <option value="1.0L及以下">1.0L及以下</option>
+            <option value="1.1L~1.6L">1.1L~1.6L</option>
+            <option value="1.7L~2.0L">1.7L~2.0L</option>
+            <option value="2.1L~2.5L">2.1L~2.5L</option>
+            <option value="2.6L~3.0L">2.6L~3.0L</option>
+            <option value="3.0L以上">3.0L以上</option>
+        </select>
+    </div>
+    <br>
+    <div id="q_location">
+        归属地:
+        <select name="location" id="location" onchange="queryData(pn,ps)" class="form-control">
+
+        </select>
+    </div>
+</div>
+<div class="container-fluid">
+    <div id="rows">
+        <div class="row">
+            <div class='col-sm-6 col-md-3'>
+            <div class='thumbnail'>
+                asd
+                <img src='img/a2.jpg' width='200px' height='200px'>
+                <div class='caption'></div>
+                </div>
+            </div>
+            <div class='col-sm-6 col-md-3'>
+                <div class='thumbnail'>
+                    asd
+                    <img src='img/a2.jpg' width='200px' height='200px'>
+                    <div class='caption'></div>
+                </div>
+
+            </div>
+            <div class='col-sm-6 col-md-3'>
+                <div class='thumbnail'>
+                    <img src='img/a2.jpg' width='200px' height='200px'>
+                    <div class='caption'></div>
+                </div>
+
+            </div>
+            <div class='col-sm-6 col-md-3'>
+                <div class='thumbnail'>
+                    <img src='img/a2.jpg' width='200px' height='200px'>
+                    <div class='caption'></div>
+                </div>
+
+            </div>
+            <div class='col-sm-6 col-md-3'>
+                <div class='thumbnail'>
+                    <img src='img/a2.jpg' width='200px' height='200px'>
+                    <div class='caption'></div>
+                </div>
+
+            </div>
+            <div class='col-sm-6 col-md-3'>
+                <div class='thumbnail'>
+                    <img src='img/a2.jpg' width='200px' height='200px'>
+                    <div class='caption'></div>
+                </div>
+
+            </div>
+            <div class='col-sm-6 col-md-3'>
+                <div class='thumbnail'>
+                    <img src='img/a2.jpg' width='200px' height='200px'>
+                    <div class='caption'></div>
+                </div>
+
+            </div>
+            <div class='col-sm-6 col-md-3'>
+                <div class='thumbnail'>
+                    <img src='img/a2.jpg' width='200px' height='200px'>
+                    <div class='caption'></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div style="position:absolute;left:10px;bottom:10px">
+    <button type="button" class="btn btn-primary" id="first">首页</button>
+    <button type="button" class="btn btn-success" id="pre">上一页</button>
+    <button type="button" class="btn btn-info" id="next">下一页</button>
+    <button type="button" class="btn btn-danger" id="end">尾页</button>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script>
+    /*$(function(){
+        queryAllBrand();
+        queryAllLocation();
+        queryAllTrain();
+        queryData(pn,ps);
+
+        $("#first").on('click',function(){
+            queryData(1,ps);
+        });
+        $("#pre").on('click',function(){
+            queryData(pre,ps);
+        });
+        $("#next").on('click',function(){
+            queryData(next,ps);
+        });
+        $("#end").on('click',function(){
+            queryData(end,ps);
+        })
+    });
+
+    let pn=1,ps=8;
+    let next,pre,end;
+
+    function queryAllBrand() {
+        $.post("queryAllBrand.do","",msg=>{
+            let brands = "";
+            $.each(msg,function (i,b) {
+                brands+="<input type='radio' name='brand' onclick=queryTrainWithBrand('"+b+"') value="+ b +">"+b
+            });
+            $("#q_brand").append(brands);
+            queryData(pn,ps);
+        },"json")
+    }
+
+    function queryAllTrain() {
+        $.post("queryAllTrain.do","",msg=>{
+            let trains = "";
+            $.each(msg,function (i,t) {
+                trains+="<input type='radio' name='train' onclick='queryData(pn,ps)' value="+ t +">"+t
+            });
+            $("#q_train").append(trains);
+        },"json")
+    }
+
+    function queryTrainWithBrand(brand) {
+        $.post("queryTrainWithBrand.do","brand="+brand,msg=>{
+            $("#q_train").html("");
+            let trains = "";
+            $.each(msg,function (i,t) {
+                trains+="<input type='radio' name='train' onclick='queryData(pn,ps)' value="+ t +">"+t
+            });
+            $("#q_train").append(trains);
+        },"json")
+    }
+
+    function queryAllLocation() {
+        $.post("queryAllLocation.do","",msg=>{
+            let locations="<option value=''>===请选择===</option>";
+            $.each(msg,function (i,l) {
+                locations+="<option value='"+ l +"'>"+l+"</option>"
+            });
+            $("#location").html(locations);
+        },"json")
+    }
+
+    function queryData(pn,ps) {
+
+        let brand = $('input[name="brand"]:checked').val();
+        if(brand==null||brand==""){
+            brand="";
+        }
+        let train = $('input[name="train"]:checked').val();
+        if(train==null||train==""){
+            train="";
+        }
+        let price = $('input[name="price"]:checked').val();
+        if(price==null||price==""){
+            price="";
+        }
+        let age = $('input[name="age"]:checked').val();
+        if(age==null||age==""){
+            age="";
+        }
+        let type = $("#type").val();
+        if(type==null||type==""){
+            type="";
+        }
+        let gearbox = $("#gearbox").val();
+        if(gearbox==null||gearbox==""){
+            gearbox="";
+        }
+        let capacity = $("#capacity").val();
+        if(capacity==null||capacity==""){
+            capacity="";
+        }
+        let location = $("#location").val();
+        if(location==null||location==""){
+            location="";
+        }
+
+        $.post("querySomeCar.do","pageNumber="+pn+"&pageSize="+ps+"&brand="+brand+"&train="+train+"&price="+price+"&age="+age+"&type="+type+"&gearbox="+gearbox+"&capacity="+capacity+"&location="+location, msg=>{
+            console.log(msg);
+            pre = msg.pre;
+            next = msg.next;
+            end = msg.total;
+            let rows = "<div class='row' >";
+            let rows2 = "<div class='row' >";
+            $.each(msg.rows,function (i,car) {
+                /!*if(i<=3){*!/
+                rows+="<div class='col-sm-6 col-md-3'>"+
+                    "<div class='thumbnail'>"+
+                    "<img src='"+car.carPic.savepath+"' width='200px' height='200px'>"+
+                    car.info+"|"+car.course+"|"+car.uploadtime+"|"+car.location+"|"+car.price+"万";
+                "<div class='caption'>"+
+                "</div>"+
+                "</div>"+
+                "</div>"
+                /!*}*!/
+            });
+            rows+="</div>";
+            $.each(msg.rows,function (i,car) {
+                if(i>3){
+                    rows2+="<div class='col-sm-6 col-md-3'>"+
+                        "<div class='thumbnail'>"+
+                        "<img src='"+car.carPic.savepath+"' width='200px' height='200px'>"+
+                        car.info+"|"+car.course+"|"+car.uploadtime+"|"+car.location+"|"+car.price+"万";
+                    "<div class='caption'>"+
+                    "</div>"+
+                    "</div>"+
+                    "</div>"
+                }
+            });
+            rows2+="</div>";
+            $("#rows").html(rows+rows2);
+            console.log(msg.rows);
+        },"json")}*/
+</script>
+</body>
+</html>
